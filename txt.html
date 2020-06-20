@@ -95,12 +95,33 @@
 		<div class="show-result">
 			Caracteres: <span class="number" id="chars">0</span>
 			Palavras: <span class="number" id="words">0</span>
+			Palavras Válidas: <span class="number" id="valid">0</span>
+			Palavras Repetidas: <span class="number" id="rep">0</span>
 			Linhas: <span class="number" id="lines">0</span>
 		</div>
 	</div>
 </div>
 
 <script>
+function notRepeat(arr){
+	/*Retorna um Array sem valores repetidos, textos retornam em lowercase.*/
+	let volta = [];
+	for (c = 0; c < arr.length; c++){
+		if (volta.includes(arr[c].toLowerCase()) === False){
+			volta.push(arr[c].toLowerCase());
+		}
+	}
+	return volta;
+}
+
+function count(arr){
+	/*Retorna um Number que representa quantas vezes ele repete no array.*/
+	var count = [];
+	var a = notRepeat(arr);
+	
+	return count;
+}
+
 function run(){
 	$('#texto').on('input', function(){
 		var texto = $('#texto').val();
@@ -117,9 +138,20 @@ function run(){
 		
 		var lines = texto.split("\n");
 		var l = (texto.length==0) ? 0 : lines.length;
+
+		let rep = 0;
+		for (var i = 0; i < splitString.length; i++) {
+			if (count(splitString[i], splitString) >= 3){
+				rep += count(splitString[i], splitString) - 1;
+			}
+		}
+		//let v = notRepeat(splitString);
+
 		
 		$('#chars').text(c);
 		$('#words').text(w);
+		//$('#valid').text(v.length);
+		$('#rep').text(rep);
 		$('#lines').text(l);
 	});
 }
